@@ -72,22 +72,25 @@ export default function HeroSection() {
                         {/* CTA and badges */}
                         <div className="mt-8 flex flex-col sm:flex-row items-center sm:items-start gap-4">
                             <motion.a
-                                
+
                                 className="inline-flex items-center justify-center rounded-full bg-teal-600 px-5 py-3 text-white font-medium shadow hover:scale-[1.02] transform-gpu transition"
                                 whileHover={{ scale: 1.03 }}
                                 initial={{ scale: 0.98 }}
                                 animate={{ scale: 1 }}
                                 transition={{ duration: 0.25 }}
                             >
-                              <Link to={"/contact"}>  Hire Me</Link>
+                                <Link to={"/contact"}>  Hire Me</Link>
                             </motion.a>
 
-                            <Link
-                                to="/cv"
-                                className="inline-flex items-center justify-center rounded-full border border-gray-200 dark:border-gray-700 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 bg-white/60 dark:bg-transparent backdrop-blur-sm"
+                            <a
+                                href="/Junayed.pdf"      // তোমার PDF ফাইলের লিঙ্ক
+                                download                // ফাইল ডাউনলোড করার জন্য
+                                target="_blank"         // নতুন ট্যাবে খুলবে (ইচ্ছামত)
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center justify-center rounded-full border border-gray-200 dark:border-gray-700 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 bg-white/60 dark:bg-transparent backdrop-blur-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition"
                             >
                                 Download CV
-                            </Link>
+                            </a>
 
                             {/* Skills chips */}
                             <div className="flex flex-wrap gap-2 mt-3 sm:mt-0">
