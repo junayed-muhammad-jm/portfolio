@@ -4,9 +4,9 @@ import { Link } from "react-router";
 export default function ProjectsSection() {
     const projects = [
         {
-            title: "Portfolio Website",
+            title: "Library web side",
             description: "Personal portfolio built with React.",
-            url: ""
+            url: "#"
         },
         {
             title: "Madrasa Site",
@@ -21,17 +21,17 @@ export default function ProjectsSection() {
         {
             title: "Task Manager",
             description: "Organize your daily tasks easily.",
-            url: ""
+            url: "#"
         },
         {
             title: "Chat App",
             description: "Real-time messaging with friends.",
-            url: ""
+            url: "#"
         },
         {
             title: "Weather App",
             description: "Get instant weather updates.",
-            url: ""
+            url: "#"
         },
     ];
 

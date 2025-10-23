@@ -1,12 +1,51 @@
-
 import { motion } from "framer-motion";
 import { Link } from "react-router";
+import { useState, useEffect } from "react";
 
-// HeroSection with: profile picture, gradient/blob background, subtle animations (zoom-in, fade-in, floating)
-export default function HeroSection() {
+// Stats type
+type StatItem = {
+    label: string;
+    target: number;
+    suffix?: string;
+};
+
+// Stats data
+const stats: StatItem[] = [
+    { label: "Years experience", target: 1, suffix: "+" },
+    { label: "Projects", target: 200, suffix: "+" },
+    { label: "Happy clients", target: 155, suffix: "+" },
+];
+
+export default function HeroSectionWithStats() {
+    // Image slider
+    const images = [
+        "/img-1.jpg", "/img-2.jpg", "/img-3.jpg",
+        "/img-4.jpg", "/img-5.jpg", "/img-6.jpg",
+        "/img-8.jpg", "/img-9.jpg", "/img-10.jpg",
+    ];
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % images.length);
+        }, 2000); // 2 sec per slide
+        return () => clearInterval(interval);
+    }, []);
+
+    // Animated stats
+    const [counts, setCounts] = useState<number[]>(stats.map(() => 0));
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCounts((prev) =>
+                prev.map((val, i) => (val < stats[i].target ? val + 1 : val))
+            );
+        }, 50);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
-        <section className="relative overflow-hidden bg-gradient-to-br from-teal-50 via-white to-teal-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-800 ">
-            {/* Decorative blobs (SVG) */}
+        <section className="relative overflow-hidden bg-gradient-to-br from-teal-50 via-white to-teal-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-800">
+            {/* Decorative blobs */}
             <svg
                 className="pointer-events-none absolute -right-32 top-0 w-[480px] opacity-40 dark:opacity-20"
                 viewBox="0 0 600 600"
@@ -69,39 +108,30 @@ export default function HeroSection() {
                             I am a passionate Web Developer specializing in HTML, CSS, JavaScript, and React. I craft clean, responsive, and user-friendly web applications with maintainable, high-quality code. Driven by continuous learning, problem-solving, and collaboration, my ultimate goal is to become a full-stack developer and build innovative, impactful products that make a difference.
                         </motion.p>
 
-                        {/* CTA and badges */}
+                        {/* CTA Buttons + Skills */}
                         <div className="mt-8 flex flex-col sm:flex-row items-center sm:items-start gap-4">
                             <motion.a
-
                                 className="inline-flex items-center justify-center rounded-full bg-teal-600 px-5 py-3 text-white font-medium shadow hover:scale-[1.02] transform-gpu transition"
                                 whileHover={{ scale: 1.03 }}
                                 initial={{ scale: 0.98 }}
                                 animate={{ scale: 1 }}
                                 transition={{ duration: 0.25 }}
                             >
-                                <Link to={"/contact"}>  Hire Me</Link>
+                                <Link to={"/contact"}>Hire Me</Link>
                             </motion.a>
 
                             <a
-                                href="/Junayed.pdf"      // তোমার PDF ফাইলের লিঙ্ক
-                                download                // ফাইল ডাউনলোড করার জন্য
-                                target="_blank"         // নতুন ট্যাবে খুলবে (ইচ্ছামত)
+                                href="/Junayed.pdf"
+                                download
+                                target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center justify-center rounded-full border border-gray-200 dark:border-gray-700 px-4 py-3 text-sm text-gray-700 dark:text-gray-200 bg-white/60 dark:bg-transparent backdrop-blur-sm hover:bg-gray-100 dark:hover:bg-gray-800 transition"
                             >
-                                Download CV
+                                Download My CV
                             </a>
 
-                            {/* Skills chips */}
                             <div className="flex flex-wrap gap-2 mt-3 sm:mt-0">
-                                {[
-                                    "HTML",
-                                    "CSS",
-                                    "JavaScript",
-                                    "React",
-                                    "Tailwind",
-                                    "Node"
-                                ].map((s) => (
+                                {["HTML", "CSS", "JavaScript", "React", "Tailwind", "Node"].map((s) => (
                                     <span
                                         key={s}
                                         className="text-xs px-2.5 py-1 rounded-full bg-white/80 dark:bg-gray-800/60 text-gray-800 dark:text-gray-200 border border-gray-100 dark:border-gray-700"
@@ -112,47 +142,45 @@ export default function HeroSection() {
                             </div>
                         </div>
 
-                        {/* small stats */}
+                        {/* Animated Stats */}
                         <div className="mt-8 flex flex-wrap gap-6">
-                            <div className="flex flex-col">
-                                <span className="text-2xl font-semibold text-gray-900 dark:text-white">3+</span>
-                                <span className="text-sm text-gray-600 dark:text-gray-300">Years experience</span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-2xl font-semibold text-gray-900 dark:text-white">20+</span>
-                                <span className="text-sm text-gray-600 dark:text-gray-300">Projects</span>
-                            </div>
-
-                            <div className="flex flex-col">
-                                <span className="text-2xl font-semibold text-gray-900 dark:text-white">5+</span>
-                                <span className="text-sm text-gray-600 dark:text-gray-300">Happy clients</span>
-                            </div>
+                            {stats.map((stat, i) => (
+                                <div key={i} className="flex flex-col text-center">
+                                    <span className="text-2xl font-semibold text-gray-900 dark:text-white">
+                                        {counts[i]}
+                                        {stat.suffix || ""}
+                                    </span>
+                                    <span className="text-sm text-gray-600 dark:text-gray-300">
+                                        {stat.label}
+                                    </span>
+                                </div>
+                            ))}
                         </div>
                     </motion.div>
 
-                    {/* RIGHT: Image card with zoom + floating effect */}
+                    {/* RIGHT: Image slider card */}
                     <div className="md:w-1/3 flex justify-center md:justify-end">
                         <motion.div
+                            key={currentIndex}
                             className="relative w-[260px] h-[340px]"
                             initial={{ scale: 0.96, y: 8, opacity: 0 }}
                             animate={{ scale: 1, y: 0, opacity: 1 }}
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
-                            {/* subtle floating animation */}
+                            {/* Floating shadow */}
                             <motion.div
                                 className="absolute -inset-1 rounded-3xl shadow-2xl"
                                 animate={{ y: [0, -8, 0] }}
                                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
                             />
 
-                            {/* colored rotated card behind image */}
+                            {/* Background gradient card */}
                             <div className="absolute -top-5 -left-5 w-full h-full rounded-3xl bg-gradient-to-br from-teal-400 to-blue-500 mix-blend-multiply opacity-90 transform rotate-3" />
 
-                            {/* profile image */}
+                            {/* Profile Image */}
                             <motion.img
-                                src="/img-1.jpg"
-                                alt="Junayed Muhammad"
+                                src={images[currentIndex]}
+                                alt={`Junayed Muhammad ${String(currentIndex + 1).padStart(2, "0")}`}
                                 className="relative z-10 w-full h-full object-cover rounded-3xl border-4 border-white dark:border-gray-900 shadow-lg"
                                 initial={{ scale: 0.98 }}
                                 animate={{ scale: 1 }}

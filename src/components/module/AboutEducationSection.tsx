@@ -61,7 +61,7 @@ export default function AboutEducationSection() {
                             {/* Currently Learning */}
                             <div className="border-l-4 border-teal-500 pl-4">
                                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                                    Web Development
+                                    Web Development - 2025
                                 </h3>
                                 <p className="text-gray-600 dark:text-gray-300">
                                     Currently learning and building projects

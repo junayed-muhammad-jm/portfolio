@@ -4,6 +4,7 @@ import HomePage from "@/pages/home";
 import About from "@/pages/home/About";
 import Contact from "@/pages/home/Contact";
 import CV from "@/pages/home/CV";
+import MyImage from "@/pages/home/myImage";
 import Project from "@/pages/home/Project";
 import Services from "@/pages/home/Service";
 
@@ -38,7 +39,12 @@ const router = createBrowserRouter([
     {
         path: "/cv",
         Component: CV
-      }
+      },
+       {
+        path: "/my-image",
+        Component: MyImage
+      },
+
 
 
 

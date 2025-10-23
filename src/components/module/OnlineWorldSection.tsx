@@ -37,7 +37,7 @@ export default function OnlineWorldSection() {
                     </a>
 
                     {/* Facebook Card */}
-                    <a href="https://facebook.com/yourusername" target="_blank" rel="noopener noreferrer">
+                    <a href="https://www.facebook.com/junayedadnan.junayedadnan.9" target="_blank" rel="noopener noreferrer">
                         <motion.div
                             className="flex flex-col items-center justify-center p-8 rounded-2xl shadow-lg bg-blue-600 text-white cursor-pointer hover:scale-105 transition-transform duration-300"
                             initial={{ opacity: 0, y: 50 }}
@@ -65,7 +65,7 @@ export default function OnlineWorldSection() {
                     </a>
 
                     {/* Gmail Card */}
-                    <a href="mailto:junayedmuhammad.jm@gmail.com" target="_blank" rel="noopener noreferrer">
+                    <a href="mailto:junayedali1582002@gmail.com" target="_blank" rel="noopener noreferrer">
 
                         <motion.div
                             className="flex flex-col items-center justify-center p-8 rounded-2xl shadow-lg bg-red-500 text-white cursor-pointer hover:scale-105 transition-transform duration-300"
